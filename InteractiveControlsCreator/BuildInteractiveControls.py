@@ -16,15 +16,15 @@ def build_interactive_controls():
     4. store the skins
     5. For all bone, create locators
     6. For selected bones, create controllers
-    7. Connect each locator to the bind Pre matrix of each skins
+    7. Connect each locator to the bind Pre matrix of each skin
     @return:
     """
-    # TODO : when adding a new controler to an existing setup, it should be good that the new setup is parented and parenting the the existing.
+    # TODO : when adding a new controller to an existing setup, it should be good that the new setup is parented and parenting the the existing.
 
     # get all selected
     sel = cmds.ls(sl=1, l=True)
 
-    # get all children and add them to sel, but pre-store all children to avoid creation of controlers
+    # get all children and add them to sel, but pre-store all children to avoid creation of controllers
     hierarchyList = []
     for bone in sel:
         children = get_hierarchy(bone)
@@ -64,7 +64,7 @@ def build_interactive_controls():
 
         # only create full setup for selected
         if bone in sel:
-            # controlers :
+            # controllers :
             ctrl = cmds.circle(n="ctrl_" + boneName, normal=[1, 0, 0], c=(0, 0, 0))
             cmds.addAttr(ctrl[0], longName='isInteractiveSetup', attributeType='bool', defaultValue=True,
                          keyable=False)

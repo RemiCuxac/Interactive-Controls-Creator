@@ -11,7 +11,7 @@ def remove_interactive_controls():
     # because we can't only remove the connection, we have to set the matrix right after disconnection to set it.
     # sometimes, disconnecting a connection automatically set the input to 0
     for skin in cmds.ls(type="skinCluster"):
-        # below: could also use for inConnection in cmds.getAttr(skin + ".bindPreMatrix', multiIndices=True)
+        # below: could also use for inConnection in cmds.getAttr(skin + '.bindPreMatrix', multiIndices=True)
         for inConnection in cmds.ls(skin + ".bindPreMatrix[*]"):
             mat = cmds.getAttr(inConnection)
             inBoneConnection = cmds.connectionInfo(inConnection, sourceFromDestination=True)
@@ -23,7 +23,7 @@ def remove_interactive_controls():
         try:
             if cmds.attributeQuery("isInteractiveSetup", node=obj, exists=True):
                 cmds.delete(obj)
-        except TypeError as e:
+        except TypeError:
             # because if we delete top element, children will be deleted too
             pass
 
